@@ -1,0 +1,22 @@
+.dialogsPage{
+    display: flex;
+    justify-content: flex-start;
+   
+   
+}
+.dialogsColum{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 60px;
+    
+    
+    
+}
+.messagesColum{
+    display: flex;
+    flex-direction: column;
+    margin-left: 180px;
+    margin-top: 50px;
+    padding-left: 20px;
+    border-left: solid black 2px;
+}

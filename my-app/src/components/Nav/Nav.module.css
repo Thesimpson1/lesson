@@ -1,0 +1,29 @@
+.nav{
+  background-color: burlywood;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px; 
+}
+.conteiner{
+  display:flex;
+  flex-direction: row;
+  margin: 10px;
+}
+.friend{
+  margin-left: 30px;
+}
+.flexContainer{
+  margin: 30px;
+}
+.item :hover{
+  color:rgb(255, 233, 38);
+}
+.item a{
+  text-decoration: none;
+  
+}
+.item a.activeLink {
+  color:aqua;
+  
+}

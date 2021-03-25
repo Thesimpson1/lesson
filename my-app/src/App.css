@@ -1,0 +1,12 @@
+.app-wraper{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.app-wraper-content{
+    width: 80%;
+    background-color: rgb(155, 226, 248);
+}

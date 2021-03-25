@@ -1,0 +1,14 @@
+.header{
+    display: inline;
+    background-color: green;
+    width:100%;
+    height: 50px;
+  }
+  
+  .header img{
+    width: 50px;
+  }
+  .logo{
+    float:right;
+    color: aliceblue;
+  }

@@ -1,0 +1,11 @@
+.content{
+ color:chartreuse;
+  }
+.contentI img{
+  width: 40px;
+  border-radius: 20px;
+}
+.content span{
+  color: aliceblue;
+  font-size: small;
+}
