@@ -2,6 +2,8 @@ import React from 'react'
 import stylist from './Dialogs.module.css'  
 import Dialogitem from './Dialogitem/Dialogitem'
 import Message from './Message/Message'
+
+
 const Dialogs = (props) => {
        
 //display dialogs and messages    
@@ -18,6 +20,7 @@ const Dialogs = (props) => {
     let text = newText.current.value;
     props.addLetterDispath(text);
   }
+  
     return  (
       <div className ={stylist.dialogsPage}>
         <div className ={stylist.dialogsColum}>

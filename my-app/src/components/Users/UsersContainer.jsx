@@ -1,32 +1,20 @@
 
 import {connect} from 'react-redux';
-import { followed, getUsers, setCurrentPage, setFollow, setLoader, unfollowed } from '../../Redax/reducerUsers';
+import {  followThunkContainer, getUsersThunkContainer, pageChangedThunkContainer,  unfollowThunkContainer } from '../../Redax/reducerUsers';
 import Users from './Users';
 import React from 'react';
 import Preload from '../Preload/Preload';
-import {usersAPI } from '../../API/API';
 
 
 class UsersAPIConteiner extends React.Component{
-
+  
   componentDidMount = () => { 
     if(this.props.users.length === 0){
-      this.props.setLoader(true);
-      usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-
-        this.props.setLoader(false);
-        
-        this.props.getUsers(data.items);
-      }); 
+      this.props.getUsersThunkContainer(this.props.currentPage, this.props.pageSize);
     };
   }
   onPageChanged = (pageNumber) => {
-  this.props.setCurrentPage(pageNumber);
-  this.props.setLoader(true);
-  usersAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
-    this.props.setLoader(false); 
-        this.props.getUsers(data.items);
-      }); 
+    this.props.pageChangedThunkContainer(pageNumber, this.props.pageSize);
   } 
   render() {
     return <>
@@ -36,10 +24,9 @@ class UsersAPIConteiner extends React.Component{
       totalCount = {this.props.totalCount}
       currentPage = {this.props.currentPage}
       onPageChanged = {this.onPageChanged}
-      unfollowed = {this.props.unfollowed}
-      followed = {this.props.followed}
-      setFollow = {this.props.setFollow}
       loadFollow = {this.props.loadFollow}
+      unfollowThunkContainer = {this.props.unfollowThunkContainer}
+      followThunkContainer = {this.props.followThunkContainer}
     />
     </>
   }
@@ -57,11 +44,9 @@ let mapStateToProps = (state) =>{
 };
 
 const UsersContainer = connect(mapStateToProps, {
-  followed,
-  unfollowed,
-  getUsers,
-  setCurrentPage,
-  setLoader,
-  setFollow
+  getUsersThunkContainer,
+  pageChangedThunkContainer,
+  followThunkContainer,
+  unfollowThunkContainer
 }) (UsersAPIConteiner);
 export default UsersContainer;

@@ -1,3 +1,5 @@
+import { headerApi } from "../API/API";
+
 const GET_AUTH_USER_DATE = 'GET_AUTH_USER_DATE';
 
 let initialState = {
@@ -7,6 +9,7 @@ let initialState = {
     email: null,
     isAuth: false
 }   
+
 const reducerAuthUser = ( state = initialState, action) => {
     
     switch (action.type) {
@@ -25,6 +28,14 @@ export const getAuthDate = (authData) => {
       type : GET_AUTH_USER_DATE,
       authData
     };
+};
+export const getAuthThunkContainer = () => (dispatch) =>{
+    headerApi.getAuth().then(response => {
+        if(response.data.resultCode === 0){
+            
+            dispatch(getAuthDate(response.data.data)); 
+        }
+      }); 
 };
 
 export default reducerAuthUser;

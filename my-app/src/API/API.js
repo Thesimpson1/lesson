@@ -14,9 +14,7 @@ export const usersAPI = {
                 }
             )
         }
-    }   
-
-
+};   
 export const followAPI = {
     follow(userId){
         return instanse.delete(`follow/${userId}`)
@@ -24,9 +22,14 @@ export const followAPI = {
     unFollow(userId){
         return instanse.post(`follow/${userId}`)
     }
-}
+};
 export const profileApi = {
     getProfileData(userId){
         return instanse.get(`profile/` + userId)
     }
-}
+};
+export const headerApi = {
+    getAuth(){
+        return instanse.get(`auth/me`)
+    }
+};

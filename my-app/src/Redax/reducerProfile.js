@@ -1,4 +1,4 @@
-
+import { profileApi } from "../API/API";
 const ADD_NEW_POST = 'ADD-NEW-POST';
 const ADD_NEW_LETTER = 'ADD-NEW-LETTER';
 const GET_PROFILE = 'GET_PROFILE'; 
@@ -52,5 +52,10 @@ export const getProfile = (profile) => {
       type : GET_PROFILE, 
       profile
     };   
+};
+export const getProfileThunkContainer = (userId) => (dispatch) =>{
+    profileApi.getProfileData(userId).then(response => {
+        dispatch(getProfile(response.data));
+      }); 
 };
 export default reducerProfile;

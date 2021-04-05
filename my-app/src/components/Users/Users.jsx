@@ -30,28 +30,10 @@ let Users = (props) =>{
            <div>
              {i.followed
              ? <button disabled = {props.loadFollow.some(id => id === i.id)} onClick = {() => {
-              props.setFollow(true, i.id);
-              
-              
-              followAPI.follow(i.id).then(response => {
-                if(response.data.resultCode == 0){
-                  props.unfollowed(i.id);
-                  props.setFollow(false, i.id);
-                  };
-              })
-              
+                props.followThunkContainer(i.id);
               }}>Follow</button>
              :<button disabled = {props.loadFollow.some(id => id === i.id)} onClick = {() => {
-              props.setFollow(true, i.id);
-              
-              
-              followAPI.unFollow(i.id).then(response => {
-                if(response.data.resultCode == 0){
-                  props.followed(i.id);
-                  props.setFollow(false, i.id)  
-                  };
-                
-              })
+                props.unfollowThunkContainer(i.id);
                }}>Unfollow</button> }
            </div>
          </div>

@@ -1,36 +1,34 @@
-
 import React from 'react'
 import Profile from './Profile';
 import {connect} from 'react-redux'
-import { getProfile } from '../../Redax/reducerProfile';
+import { getProfileThunkContainer } from '../../Redax/reducerProfile';
 import {withRouter} from "react-router-dom";
-import { profileApi } from '../../API/API';
+import { WidthAuth } from '../../HOC/AuthHOC';
+import { compose } from 'redux';
 
 class ProfileAPIConteiner extends React.Component{
-  
   componentDidMount = () =>{
-    console.log(this.props.match.params.id);
     let userId = this.props.match.params.id;
     if(!userId){
-      userId = 2;
+      userId = 15568;
     }
-      profileApi.getProfileData(userId).then(response => {
-        
-        this.props.getProfile(response.data);
-      }); 
+    this.props.getProfileThunkContainer(userId);
     }
   render = () =>{
     return (
-    <Profile {...this.props} profile = {this.props.profile}/>
+    <Profile {...this.props} userId = {this.props.match.params.id} profile = {this.props.profile}/>
     )
   }
-}
-let ProfileWithRouterAPIConteiner = withRouter(ProfileAPIConteiner);
+};
 
 let mapStateToProps = (state) => ({
-    profile: state.allDataProfile.profile
+    profile: state.allDataProfile.profile,
 });
 
-const ProfileConteiner = connect(mapStateToProps, {getProfile}) (ProfileWithRouterAPIConteiner);
+const ProfileConteiner = compose(
+  connect(mapStateToProps, {getProfileThunkContainer}),
+  withRouter,
+  WidthAuth
+)(ProfileAPIConteiner);
 
 export default ProfileConteiner;
